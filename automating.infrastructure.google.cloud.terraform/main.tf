@@ -29,20 +29,22 @@ module "storage" {
 
 module "vpc" {
     source  = "terraform-google-modules/network/google"
-    version = "2.5.0"
+    version = "3.4.0"
 
     project_id   = var.project_id
-    network_name = "terraform-vpc"
+    network_name = "tf-vpc-204132"
     routing_mode = "GLOBAL"
 
     subnets = [
         {
             subnet_name           = "subnet-01"
-            subnet_region         = var.zone
+            subnet_ip             = "10.10.10.0/24"
+            subnet_region         = var.region
         },
         {
             subnet_name           = "subnet-02"
-            subnet_region         = var.zone
+            subnet_ip             = "10.10.20.0/24"
+            subnet_region         = var.region
         }
     ]
 }
@@ -53,8 +55,8 @@ resource "google_compute_firewall" "default" {
 
   allow {
     protocol = "tcp"
-    ports    = "80"
+    ports    = ["80"]
   }
 
-  source_range = "0.0.0.0/0"
+  source_ranges = ["0.0.0.0/0"]
 }

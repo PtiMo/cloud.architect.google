@@ -1,17 +1,17 @@
 variable "region" {
   description = "GCP Region."
   type        = string
-  default     = "us-central1"
+  default     = "us-east1"
 }
 
 variable "zone" {
   description = "GCP zone."
   type        = string
-  default     = "us-central1-a"
+  default     = "us-east1-b"
 }
 
 variable "project_id" {
   description = "The ID of the project in which to provision resources."
   type        = string
-  default     = "qwiklabs-gcp-02-d3b030e5c152"
+  default     = "qwiklabs-gcp-02-4c6fb763c716"
 }

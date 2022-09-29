@@ -1,10 +1,10 @@
 resource "google_compute_instance" "vm_instance_1" {
   name         = "tf-instance-1"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = "debian-10-buster-v20220920"
     }
   }
 
@@ -13,15 +13,19 @@ resource "google_compute_instance" "vm_instance_1" {
     access_config {
     }
   }
+  metadata_startup_script = <<-EOT
+        #!/bin/bash
+    EOT
+  allow_stopping_for_update = true
 }
 
 resource "google_compute_instance" "vm_instance_2" {
   name         = "tf-instance-2"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = "debian-10-buster-v20220920"
     }
   }
 
@@ -30,4 +34,8 @@ resource "google_compute_instance" "vm_instance_2" {
     access_config {
     }
   }
+  metadata_startup_script = <<-EOT
+        #!/bin/bash
+    EOT
+  allow_stopping_for_update = true
 }
